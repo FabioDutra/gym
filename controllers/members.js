@@ -1,6 +1,6 @@
 const fs = require('fs');
-const data = require('./data.json');
-const { age, date } = require('./utils');
+const data = require('../data.json');
+const { age, date } = require('../utils');
 
 exports.index = function(req, res) {
     return res.render('members/index', { members: data.members});
@@ -21,8 +21,13 @@ exports.show = function (req, res) {
         age: age(foundMember.birth)
     };
 
-    return res.render('members/create', { member });
+    return res.render('members/show', { member });
 };
+
+
+exports.create = function (req, res) {
+  return res.render('members/create')
+}
 
 //Post
 exports.post = function (req, res) {
@@ -54,7 +59,7 @@ exports.post = function (req, res) {
 
         return res.redirect('/members');
     });
-    // return res.send(req.body);
+
 };
 
 //Edit
